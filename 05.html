@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05</title>
+</head>
+
+<body>
+    5.定义⼀个函数 weekOfYear 返回参数年份中有多少个星期。
+    <script>
+        weekOfYear("2024/12/1"); // 53
+        function weekOfYear(timeStr) {
+            let date = new Date(timeStr)
+            let year = date.getFullYear()
+            if (isNaN(year)) return ''
+            // 获取这一年的第一天是星期几
+            let week = new Date(year, 0, 1).getDay()
+            // 闰年366天、平年365天
+            let days = ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) ? 366 : 365
+            if (week === 1) {
+                // 如果第一号是周一
+                return Math.ceil(days / 7)
+            } else {
+                // 如果不是周一
+                return Math.ceil((days - 7 + week) / 7)
+            }
+        }
+
+        console.log(weekOfYear("2024/12/1"));
+
+    </script>
+</body>
+
+</html>

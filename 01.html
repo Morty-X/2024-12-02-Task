@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01</title>
+</head>
+
+<body>
+    1.【时间增加】返回增加⼀定时间的时间,各个传⼊的单位对⼤⼩
+    写不敏感，⽀持缩写和复数。 请注意，缩写是区分⼤⼩写的。
+    <script>
+        // 不传第三个参数默认为当前时刻
+        //⽀持的单位列表： day, week, hour, minute, second, millisecond
+        /*  add(7, "day");
+         add(7, "day", "2024/10/8 12:00:23");
+         add(18, "week", "2024/10/8 12:00:23"); */
+        function getAddTime(n, unit, currentTime) {
+            if (typeof n !== "number" || n !== n) return console.log('数据不合法！');
+            if (typeof unit !== "string") return console.log('参数错误！');
+            // 增加的毫秒数
+            let temp = 0
+            if (unit === 'day') {
+                temp = n * 24 * 60 * 60 * 1000
+            } else if (unit === 'week') {
+                temp = n * 7 * 24 * 60 * 60 * 1000
+            } else if (unit === 'hour') {
+                temp = n * 60 * 60 * 1000
+            } else if (unit === 'minute') {
+                temp = n * 60 * 1000
+            } else if (unit === 'second') {
+                temp = n * 1000
+            }
+            else {
+                temp = n
+            }
+            // 获取当前时间戳
+            if (currentTime === undefined) {
+                let date1 = new Date(Date.now() + temp)
+                let year = date1.getFullYear();
+                let month = date1.getMonth() + 1;
+                let day = date1.getDate();
+                let week = date1.getDay();
+                let hour = date1.getHours();
+                let minute = date1.getMinutes();
+                let second = date1.getSeconds();
+                return `${year}年${month}月${day}日 星期${week} ${hour}时${minute}分 ${second}秒 `
+            } else {
+                let tempDate = new Date(currentTime)
+                let date2 = new Date(tempDate.getTime() + temp)
+                let year = date2.getFullYear();
+                let month = date2.getMonth() + 1;
+                let day = date2.getDate();
+                let week = date2.getDay();
+                let hour = date2.getHours();
+                let minute = date2.getMinutes();
+                let second = date2.getSeconds();
+                return `${year}年${month}月${day}日 星期${week} ${hour}时${minute}分 ${second}秒 `
+            }
+        }
+
+        console.log(getAddTime(7, "day"))
+        console.log(getAddTime(7, "day", "2024/10/8 12:00:23"))
+        console.log(getAddTime(18, "week", "2024/10/8 12:00:23"))
+        console.log(getAddTime(2129, "hour"))
+        console.log(getAddTime(19, "day", '2024/12/1 12:00:00'))
+
+
+    </script>
+</body>
+
+</html>

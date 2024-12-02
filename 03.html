@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03</title>
+</head>
+
+<body>
+    3.定义⼀个 isBetween 函数 返回⼀个 boolean 来展示⼀个时间
+    是否介于两个时间之间。
+
+    <script>
+        isBetween("2010-10-20", "2010-10-19", "2010-10-25"); // true
+        // 判断2010-10-20是不是在2010-10-19和2010-10-25之间
+        function isBetween(now, start, end) {
+            let nowDate = new Date(now)
+            let startDate = new Date(start)
+            let endDate = new Date(end)
+            let condition = nowDate.getTime() >= startDate.getTime() && nowDate.getTime() <= endDate.getTime()
+            return condition
+        }
+        console.log(isBetween("2010-10-20", "2010-10-19", "2010-10-25"));
+
+    </script>
+</body>
+
+</html>

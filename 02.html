@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02</title>
+</head>
+2.定义⼀个 dayOfYear 函数，接受⼀个字符串时间，返回⼀个
+number 来表示是该⽇期年中第⼏天。
+
+<body>
+    <script>
+        function dayOfYear(str) {
+            let date = new Date(str)
+            let year = date.getFullYear()
+            let month = date.getMonth() + 1
+            // 获取当前月中的第几天
+            let mday = date.getDate()
+            
+            let days = 0
+            switch (month) {
+                case 12:
+                    days += 30
+                case 11:
+                    days += 31
+                case 10:
+                    days += 30
+                case 9:
+                    days += 31
+                case 8:
+                    days += 31
+                case 7:
+                    days += 30
+                case 6:
+                    days += 31
+                case 5:
+                    days += 30
+                case 4:
+                    days += 31
+                case 3:
+                    days = days + (month % 4 === 0 && month % 100 !== 0 ? 28 : 29)
+                case 2:
+                    days += 31
+                case 1:
+                    days += mday
+                    break;
+            }
+            return days
+        }
+
+        console.log(dayOfYear('2024-12-02'));
+
+    </script>
+</body>
+
+</html>
